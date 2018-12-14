@@ -1,5 +1,6 @@
-<div>
+<h1>Students</h1>
+  <ul>
   <% @students.each do |student| %>
-    <div><%= student.first_name + " " + student.last_name %></div>
+    <br><a href="/students/<%=student.id%>"><%= student.to_s%></div>
   <% end %>
-</div>
+  </ul>
