@@ -10,17 +10,17 @@ end
 
 describe 'Multiple students' do
   it 'shows them on the index page' do
-    Student.create!(first_name: "Daenerys", last_name: "Targaryen")
-    Student.create!(first_name: "Lindsey", last_name: "Stirling")
+    Student.create!(first_name: "Ash", last_name: "Zaki")
+    Student.create!(first_name: "Ryan", last_name: "Zaki")
 
     visit students_path
-    expect(page).to have_content(/Daenerys|Lindsey/)
+    expect(page).to have_content(/Ash|Ryan/)
   end
 end
 
 describe 'Show page' do
   before do
-    @student = Student.create!(first_name: "Daenerys", last_name: "Targaryen")
+    @student = Student.create!(first_name: "Ash", last_name: "Zaki")
   end
 
   it 'renders properly' do
@@ -30,12 +30,12 @@ describe 'Show page' do
 
   it 'renders the first name in a h1 tag' do
     visit student_path(@student)
-    expect(page).to have_css("h1", text: "Daenerys")
+    expect(page).to have_css("h1", text: "Ash")
   end
 
   it 'renders the last name in a h1 tag' do
     visit student_path(@student)
-    expect(page).to have_css("h1", text: "Targaryen")
+    expect(page).to have_css("h1", text: "Zaki")
   end
 
   it 'renders the active status if the user is inactive' do
@@ -53,10 +53,10 @@ end
 
 describe 'Activate page' do
   before do
-    @student = Student.create!(first_name: "Daenerys", last_name: "Targaryen")
+    @student = Student.create!(first_name: "Ash", last_name: "Zaki")
   end
 
-  it "Should mark an inactive student as active" do
+  it "Should mark an inactive stuent as active" do
     visit activate_student_path(@student)
     @student.reload
     expect(@student.active).to eq(true)
@@ -78,7 +78,7 @@ end
 
 describe 'linking from the index page to the show page' do
   it 'index page links to post page' do
-    @student = Student.create!(first_name: "Daenerys", last_name: "Targaryen")
+    @student = Student.create!(first_name: "Ash", last_name: "Zaki")
     visit students_path
     expect(page).to have_link(@student.to_s, href: student_path(@student))
   end
